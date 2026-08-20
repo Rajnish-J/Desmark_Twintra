@@ -3,14 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useTheme } from "next-themes";
+import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { company, navLinks } from "@/content/company";
 import { BrandMark } from "@/components/ui/brand-mark";
 import { QuoteButton } from "@/components/quote/quote-button";
 import { Container } from "@/components/ui/container";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { useScrollViewport } from "@/components/scroll-viewport-context";
+import { useHasMounted, useReducedMotionSafe } from "@/lib/hydration";
 import { cn } from "@/lib/utils";
 
 const SECTION_IDS = navLinks.map((l) => l.href.replace("/#", ""));
@@ -18,12 +20,17 @@ const SECTION_IDS = navLinks.map((l) => l.href.replace("/#", ""));
 export function SiteHeader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const viewportRef = useScrollViewport();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const [scrolled, setScrolled] = useState(false);
   const [spied, setSpied] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // The server has no idea which theme will win, so the toggle can't render
+  // until after hydration without risking a mismatch.
+  const mounted = useHasMounted();
 
   // Sub-pages have no violet hero to sit over, so the header is always solid
   // there. Derived rather than stored, so no effect has to correct it.
@@ -85,7 +92,7 @@ export function SiteHeader() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]",
         solid
-          ? "border-b border-outline/10 bg-surface/85 shadow-[0_1px_24px_-12px_rgba(27,58,45,0.4)] backdrop-blur-xl"
+          ? "border-b border-outline/10 bg-surface/85 shadow-[0_1px_24px_-12px_rgba(30,17,64,0.4)] backdrop-blur-xl"
           : "on-dark border-b border-transparent bg-transparent",
       )}
     >
@@ -117,8 +124,8 @@ export function SiteHeader() {
                           ? "text-heading"
                           : "text-ink-mid hover:text-heading"
                         : isActive
-                          ? "text-white"
-                          : "text-white/65 hover:text-white",
+                          ? "text-panel-ink"
+                          : "text-panel-ink/65 hover:text-panel-ink",
                     )}
                   >
                     {link.label}
@@ -128,7 +135,7 @@ export function SiteHeader() {
                         aria-hidden
                         className={cn(
                           "absolute inset-0 -z-10 rounded-full",
-                          solid ? "bg-outline/[0.07]" : "bg-white/12",
+                          solid ? "bg-outline/[0.07]" : "bg-panel-ink/12",
                         )}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       />
@@ -141,7 +148,26 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ModeToggle tone={solid ? "light" : "dark"} />
+          {mounted ? (
+            <AnimatedThemeToggler
+              theme={resolvedTheme === "dark" ? "dark" : "light"}
+              onThemeChange={setTheme}
+              className={cn(
+                "flex size-10 items-center justify-center rounded-full border transition-colors [&_svg]:size-5",
+                solid
+                  ? "border-outline/15 text-heading hover:bg-outline/[0.06]"
+                  : "border-panel-ink/20 text-panel-ink hover:bg-panel-ink/10",
+              )}
+            />
+          ) : (
+            <div
+              aria-hidden
+              className={cn(
+                "size-10 rounded-full border",
+                solid ? "border-outline/15" : "border-panel-ink/20",
+              )}
+            />
+          )}
 
           <QuoteButton
             variant={solid ? "primary" : "violet"}
@@ -160,7 +186,7 @@ export function SiteHeader() {
               "flex size-10 items-center justify-center rounded-full border transition-colors lg:hidden",
               solid
                 ? "border-outline/15 text-heading hover:bg-outline/[0.06]"
-                : "border-white/20 text-white hover:bg-white/10",
+                : "border-panel-ink/20 text-panel-ink hover:bg-panel-ink/10",
             )}
           >
             {menuOpen ? (
