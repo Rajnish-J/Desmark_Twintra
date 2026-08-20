@@ -22,7 +22,7 @@ export function VisionMission() {
 
           return (
             <Reveal key={pillar.key} as="article" delay={i * 2}>
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_28px_56px_-28px_rgba(27,58,45,0.4)]">
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_28px_56px_-28px_rgba(30,17,64,0.4)]">
                 {/* Artwork panel — swaps to a photograph by setting `image` in content */}
                 <div className="relative aspect-[2/1] overflow-hidden">
                   <span
