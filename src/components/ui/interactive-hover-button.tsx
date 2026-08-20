@@ -19,9 +19,9 @@ const variants: Record<
     reveal: "text-violet-700",
   },
   glass: {
-    root: "border border-white/20 bg-white/10 text-white backdrop-blur-md",
-    dot: "bg-white",
-    reveal: "text-violet-950",
+    root: "border border-panel-ink/20 bg-panel-ink/10 text-panel-ink backdrop-blur-md",
+    dot: "bg-panel-ink",
+    reveal: "text-panel",
   },
   primary: {
     root: "bg-chilli text-cream shadow-[0_1px_2px_rgba(192,57,43,0.35)]",
@@ -60,7 +60,7 @@ function HoverContent({
       </div>
       <div
         className={cn(
-          "absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100",
+          "absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100",
           v.reveal,
         )}
       >
