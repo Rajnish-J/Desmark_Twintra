@@ -33,7 +33,7 @@ export function Compliance() {
             <Reveal as="li" key={cred.title} delay={i}>
               <div
                 className={cn(
-                  "flex h-full flex-col items-start rounded-2xl border p-7 transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_24px_48px_-26px_rgba(27,58,45,0.3)]",
+                  "flex h-full flex-col items-start rounded-2xl border p-7 transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_24px_48px_-26px_rgba(30,17,64,0.3)]",
                   pending
                     ? "border-amber/30 bg-amber/[0.05]"
                     : "border-cream-line bg-card",
@@ -56,6 +56,12 @@ export function Compliance() {
                 <p className="mt-3 flex-1 text-[13.5px] leading-[1.65] text-ink-muted">
                   {cred.body}
                 </p>
+
+                {cred.note && (
+                  <p className="mt-3 text-[12.5px] font-medium tracking-[0.02em] text-heading">
+                    {cred.note}
+                  </p>
+                )}
 
                 <Badge status={cred.status} className="mt-6">
                   {cred.statusLabel}

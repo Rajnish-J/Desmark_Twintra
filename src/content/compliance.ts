@@ -11,6 +11,8 @@ export type Credential = {
   body: string;
   status: CertStatus;
   statusLabel: string;
+  /** Short verification detail shown under the body — e.g. a registration number. */
+  note?: string;
 };
 
 export const credentials: Credential[] = [
@@ -38,8 +40,9 @@ export const credentials: Credential[] = [
   {
     icon: "receipt",
     title: "GST Registration",
-    body: "Goods & Services Tax registration currently under processing. Current Account setup in progress.",
-    status: "pending",
-    statusLabel: "In Progress",
+    body: "Goods & Services Tax registration completed — the business is fully authorised to trade and invoice under GST.",
+    status: "active",
+    statusLabel: "Active",
+    note: "GSTIN: 33AAZFD7884N1ZA",
   },
 ];

@@ -19,6 +19,7 @@ export const contact = {
   phoneHref: "+918056250963",
   location: "Chennai, Tamil Nadu, India",
   website: null as string | null,
+  gstin: "33AAZFD7884N1ZA",
 } as const;
 
 export type CertStatus = "active" | "pending";
@@ -31,7 +32,7 @@ export const certifications: {
   { short: "MCA", label: "MCA Registered", status: "active" },
   { short: "MSME", label: "MSME Certified", status: "active" },
   { short: "FSSAI", label: "FSSAI Registered", status: "active" },
-  { short: "GST", label: "GST · In Progress", status: "pending" },
+  { short: "GST", label: "GST Registered", status: "active" },
 ];
 
 export const aboutCopy = {
