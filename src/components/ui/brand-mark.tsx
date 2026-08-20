@@ -18,12 +18,12 @@ export function BrandMark({
     <span
       className={cn(
         "inline-flex items-center font-display text-[18.5px] leading-none tracking-[-0.01em]",
-        onDark ? "text-cream" : "text-heading",
+        onDark ? "text-panel-ink" : "text-heading",
         className,
       )}
     >
       {company.nameParts.first}&nbsp;
-      <span className={onDark ? "text-violet-300" : "text-accent"}>
+      <span className={onDark ? "text-panel-accent" : "text-accent"}>
         {company.nameParts.second}
       </span>
     </span>

@@ -20,7 +20,7 @@ export function Badge({
       className={cn(
         "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11.5px] font-medium tracking-[0.06em]",
         onDark
-          ? "border-white/15 bg-white/[0.07] text-white/80 backdrop-blur-sm"
+          ? "border-panel-ink/15 bg-panel-ink/[0.07] text-panel-ink/80 backdrop-blur-sm"
           : status === "pending"
             ? "border-amber/30 bg-amber/10 text-amber"
             : status === "active"
@@ -38,7 +38,7 @@ export function Badge({
             : status === "active"
               ? "bg-success"
               : onDark
-                ? "bg-violet-300"
+                ? "bg-panel-accent"
                 : "bg-ink-muted",
           status === "active" &&
             "shadow-[0_0_0_3px_color-mix(in_srgb,var(--color-success)_20%,transparent)]",
