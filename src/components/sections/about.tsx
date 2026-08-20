@@ -2,6 +2,7 @@ import { aboutCopy, aboutStats } from "@/content/company";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
+import { Highlighter } from "@/components/ui/highlighter";
 
 /** Renders {{double-braced}} spans in the content layer as marked phrases. */
 function MarkedText({ text }: { text: string }) {
@@ -9,9 +10,14 @@ function MarkedText({ text }: { text: string }) {
     <>
       {text.split(/(\{\{[^}]+\}\})/g).map((chunk, i) =>
         chunk.startsWith("{{") && chunk.endsWith("}}") ? (
-          <span key={i} className="mark-phrase">
+          <Highlighter
+            key={i}
+            action="highlight"
+            color="color-mix(in srgb, var(--color-panel-accent) 30%, transparent)"
+            isView
+          >
             {chunk.slice(2, -2)}
-          </span>
+          </Highlighter>
         ) : (
           <span key={i}>{chunk}</span>
         ),
@@ -44,7 +50,7 @@ export function About() {
               className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] opacity-90"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 60% at 25% 20%, rgba(224,95,58,0.1) 0%, transparent 62%), radial-gradient(ellipse 65% 60% at 82% 78%, rgba(45,90,63,0.1) 0%, transparent 60%)",
+                  "radial-gradient(ellipse 70% 60% at 25% 20%, rgba(224,95,58,0.1) 0%, transparent 62%), radial-gradient(ellipse 65% 60% at 82% 78%, rgba(47,27,96,0.1) 0%, transparent 60%)",
               }}
             />
 
