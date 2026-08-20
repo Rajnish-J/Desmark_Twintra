@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useReducedMotionSafe } from "@/lib/hydration";
 import { X } from "lucide-react";
 import { EnquiryForm } from "./enquiry-form";
 import { getProduct } from "@/content/products";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useScrollViewport } from "@/components/scroll-viewport-context";
 
 export function QuoteDrawer({
@@ -16,7 +18,7 @@ export function QuoteDrawer({
   product?: string;
   onClose: () => void;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const viewportRef = useScrollViewport();
@@ -78,7 +80,7 @@ export function QuoteDrawer({
             type="button"
             aria-label="Close quote panel"
             onClick={onClose}
-            className="absolute inset-0 h-full w-full cursor-default bg-forest/45 backdrop-blur-[3px]"
+            className="absolute inset-0 h-full w-full cursor-default bg-violet-900/45 backdrop-blur-[3px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -90,13 +92,13 @@ export function QuoteDrawer({
             role="dialog"
             aria-modal="true"
             aria-labelledby="quote-drawer-title"
-            className="absolute inset-y-0 right-0 flex w-full max-w-[540px] flex-col bg-surface shadow-[-24px_0_60px_-20px_rgba(27,58,45,0.35)]"
-            initial={reduced ? { opacity: 0 } : { x: "100%" }}
-            animate={reduced ? { opacity: 1 } : { x: 0 }}
-            exit={reduced ? { opacity: 0 } : { x: "100%" }}
+            className="absolute inset-y-5 right-5 flex w-[calc(100%-1.25rem)] max-w-[540px] flex-col overflow-hidden rounded-2xl border border-cream-line bg-surface shadow-[0_40px_90px_-30px_rgba(30,17,64,0.55)] sm:inset-y-8 sm:right-8 sm:w-[calc(100%-2rem)] lg:inset-y-10 lg:right-10 lg:w-[calc(100%-2.5rem)]"
+            initial={reduced ? { opacity: 0 } : { opacity: 0, x: 60, y: 24 }}
+            animate={reduced ? { opacity: 1 } : { opacity: 1, x: 0, y: 0 }}
+            exit={reduced ? { opacity: 0 } : { opacity: 0, x: 40, y: 16 }}
             transition={{ duration: reduced ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
-            <header className="relative shrink-0 overflow-hidden bg-forest px-6 py-7 sm:px-8">
+            <header className="on-dark relative shrink-0 overflow-hidden bg-panel px-6 py-7 sm:px-8">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 opacity-60"
@@ -107,17 +109,17 @@ export function QuoteDrawer({
               />
               <div className="relative flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-chilli-warm">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
                     Request a Quote
                   </p>
                   <h2
                     id="quote-drawer-title"
-                    className="mt-2 font-display text-2xl leading-tight text-cream sm:text-[1.75rem]"
+                    className="mt-2 font-display text-2xl leading-tight text-panel-ink sm:text-[1.75rem]"
                   >
                     {displayName ?? "Tell us what you need"}
                   </h2>
                   {matched && (
-                    <p className="mt-2 max-w-sm text-[13.5px] leading-relaxed text-cream/60">
+                    <p className="mt-2 max-w-sm text-[13.5px] leading-relaxed text-panel-ink/60">
                       {matched.summary}
                     </p>
                   )}
@@ -128,14 +130,14 @@ export function QuoteDrawer({
                   type="button"
                   onClick={onClose}
                   aria-label="Close"
-                  className="on-dark -mr-1 -mt-1 flex size-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-cream/70 transition-colors hover:border-white/35 hover:bg-white/10 hover:text-cream"
+                  className="-mr-1 -mt-1 flex size-9 shrink-0 items-center justify-center rounded-full border border-panel-ink/15 text-panel-ink/70 transition-colors hover:border-panel-ink/35 hover:bg-panel-ink/10 hover:text-panel-ink"
                 >
                   <X className="size-4" aria-hidden />
                 </button>
               </div>
             </header>
 
-            <div className="flex-1 overflow-y-auto px-6 py-7 sm:px-8">
+            <ScrollArea className="flex-1" viewportProps={{ className: "px-6 py-7 sm:px-8" }}>
               <EnquiryForm
                 presetProduct={matched?.name ?? product}
                 compact
@@ -143,7 +145,7 @@ export function QuoteDrawer({
                   // Leave the confirmation on screen; the user closes when ready.
                 }}
               />
-            </div>
+            </ScrollArea>
           </motion.div>
         </div>
       )}
