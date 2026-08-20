@@ -8,15 +8,15 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-dark border-t border-cream/10 bg-forest">
+    <footer className="on-dark border-t border-panel-ink/10 bg-panel">
       <Container className="py-14 sm:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <BrandMark tone="dark" />
-            <p className="mt-4 font-display text-[1.35rem] leading-snug text-cream/90">
+            <p className="mt-4 font-display text-[1.35rem] leading-snug text-panel-ink/90">
               {company.tagline}
             </p>
-            <p className="mt-3 max-w-xs text-[13.5px] leading-[1.65] text-cream/45">
+            <p className="mt-3 max-w-xs text-[13.5px] leading-[1.65] text-panel-ink/45">
               {company.legalForm} · {company.sector}
             </p>
 
@@ -24,7 +24,7 @@ export function Footer() {
               {certifications.map((cert) => (
                 <li
                   key={cert.short}
-                  className="text-[11.5px] tracking-[0.06em] text-cream/40"
+                  className="text-[11.5px] tracking-[0.06em] text-panel-ink/40"
                 >
                   {cert.label}
                 </li>
@@ -33,7 +33,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Footer">
-            <h2 className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-chilli-warm">
+            <h2 className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-accent">
               Explore
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -41,7 +41,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[14px] text-cream/60 underline-offset-4 transition-colors hover:text-cream hover:underline"
+                    className="text-[14px] text-panel-ink/60 underline-offset-4 transition-colors hover:text-panel-ink hover:underline"
                   >
                     {link.label}
                   </Link>
@@ -51,7 +51,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <h2 className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-chilli-warm">
+            <h2 className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-accent">
               Products
             </h2>
             <ul className="mt-4 space-y-2.5">
@@ -59,7 +59,7 @@ export function Footer() {
                 <li key={product.slug}>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="text-[14px] text-cream/60 underline-offset-4 transition-colors hover:text-cream hover:underline"
+                    className="text-[14px] text-panel-ink/60 underline-offset-4 transition-colors hover:text-panel-ink hover:underline"
                   >
                     {product.name}
                   </Link>
@@ -69,20 +69,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-cream/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[12.5px] text-cream/40">
+        <div className="mt-12 flex flex-col gap-4 border-t border-panel-ink/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[12.5px] text-panel-ink/40">
             © {year} {company.name}. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12.5px] text-cream/40">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12.5px] text-panel-ink/40">
             <a
               href={`mailto:${contact.email}`}
-              className="underline-offset-4 transition-colors hover:text-cream/70 hover:underline"
+              className="underline-offset-4 transition-colors hover:text-panel-ink/70 hover:underline"
             >
               {contact.email}
             </a>
             <a
               href={`tel:${contact.phoneHref}`}
-              className="underline-offset-4 transition-colors hover:text-cream/70 hover:underline"
+              className="underline-offset-4 transition-colors hover:text-panel-ink/70 hover:underline"
             >
               {contact.phone}
             </a>

@@ -21,7 +21,7 @@ export function Hero() {
       <GridPattern
         width={72}
         height={72}
-        className="fill-white/0 stroke-white/[0.045]"
+        className="fill-panel-ink/0 stroke-panel-ink/[0.0825] dark:stroke-panel-ink/[0.045]"
       />
       <div aria-hidden className="bg-grain pointer-events-none absolute inset-0 opacity-[0.16] mix-blend-overlay" />
 
@@ -30,33 +30,33 @@ export function Hero() {
       <div className="relative flex flex-1 items-center">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-violet-950/85"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-panel/85"
         />
 
         <Container className="relative w-full pb-8 pt-24 sm:pt-28 2xl:max-w-[1560px]">
           <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
             {/* ─── Copy ─── */}
-            <div className="max-w-xl">
+            <div className="max-w-xl lg:pl-8">
               <div className="flex items-center gap-3">
-                <span aria-hidden className="h-px w-8 bg-violet-300/60" />
-                <span className="text-[clamp(10px,1vw+0.3rem,11px)] font-semibold uppercase tracking-[0.2em] text-violet-200/90">
+                <span aria-hidden className="h-px w-8 bg-panel-accent/60" />
+                <span className="text-[clamp(10px,1vw+0.3rem,11px)] font-semibold uppercase tracking-[0.2em] text-panel-ink/70">
                   {company.eyebrow}
                 </span>
               </div>
 
               {/* Fluid, so the block shrinks on short screens rather than
                   forcing the fold open. */}
-              <h1 className="mt-[clamp(1rem,2.6vh,1.75rem)] font-display text-[clamp(2rem,5.2vw+0.6rem,4.15rem)] leading-[1.06] tracking-[-0.025em] text-white text-balance-tight">
+              <h1 className="mt-[clamp(1rem,2.6vh,1.75rem)] font-display text-[clamp(2rem,5.2vw+0.6rem,4.15rem)] leading-[1.06] tracking-[-0.025em] text-panel-ink text-balance-tight">
                 Trade Beyond
                 <br />
                 Transactions —
                 <br />
-                <span className="text-violet-300">Rooted in India&apos;s</span>
+                <span className="text-panel-accent">Rooted in India&apos;s</span>
                 <br />
-                <span className="text-violet-300">Finest Chillies.</span>
+                <span className="text-panel-accent">Finest Chillies.</span>
               </h1>
 
-              <p className="mt-[clamp(0.75rem,2vh,1.75rem)] max-w-lg text-[clamp(14px,0.55vw+0.72rem,16.5px)] leading-[1.65] text-white/65">
+              <p className="mt-[clamp(0.75rem,2vh,1.75rem)] max-w-lg text-[clamp(14px,0.55vw+0.72rem,16.5px)] leading-[1.65] text-panel-ink/65">
                 {company.heroLead}
               </p>
 
@@ -80,7 +80,7 @@ export function Hero() {
       </div>
 
       {/* ─── Credential strip ─── */}
-      <div className="relative z-10 shrink-0 border-t border-white/10 bg-violet-950/70 backdrop-blur-sm">
+      <div className="relative z-10 shrink-0 border-t border-panel-ink/10 bg-panel/70 backdrop-blur-sm">
         <Container className="py-4 sm:py-5 2xl:max-w-[1560px]">
           <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2.5 sm:justify-between sm:gap-x-6">
             {certifications.map((cert) => (
@@ -92,20 +92,20 @@ export function Hero() {
                   aria-hidden
                   className={cn(
                     "size-1.5 shrink-0 rounded-full",
-                    cert.status === "pending" ? "bg-amber" : "bg-violet-300",
+                    cert.status === "pending" ? "bg-amber" : "bg-panel-accent",
                   )}
                 />
                 <span
                   className={cn(
-                    cert.status === "pending" ? "text-amber" : "text-white/75",
+                    cert.status === "pending" ? "text-amber" : "text-panel-ink/75",
                   )}
                 >
                   {cert.label}
                 </span>
               </li>
             ))}
-            <li className="hidden items-center gap-2.5 text-[13px] text-white/55 lg:flex">
-              <span aria-hidden className="h-3.5 w-px bg-white/20" />
+            <li className="hidden items-center gap-2.5 text-[13px] text-panel-ink/55 lg:flex">
+              <span aria-hidden className="h-3.5 w-px bg-panel-ink/20" />
               {company.tagline}
             </li>
           </ul>
