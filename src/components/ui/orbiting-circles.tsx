@@ -81,7 +81,7 @@ export function OrbitingCircles({
             marginTop: `calc(${r} * -1)`,
           }}
           className={cn(
-            "pointer-events-none absolute left-1/2 top-1/2 rounded-full border border-white/15",
+            "pointer-events-none absolute left-1/2 top-1/2 rounded-full border border-panel-ink/15",
             pathClassName,
           )}
         />

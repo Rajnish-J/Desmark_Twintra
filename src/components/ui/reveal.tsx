@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReducedMotionSafe } from "@/lib/hydration";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -14,9 +15,14 @@ type RevealProps = {
 /**
  * Scroll-in wrapper. Honours prefers-reduced-motion by rendering statically,
  * so nothing ever animates in for users who have opted out.
+ *
+ * The preference only becomes readable after hydration, so the animated branch
+ * is what the server sends and what the first client render must agree on —
+ * `data-reveal` lets the stylesheet neutralise motion's `opacity: 0` entry
+ * styles for those users in the meantime, so nothing sits invisible.
  */
 export function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const Tag = motion[as];
 
   if (reduced) {
@@ -26,6 +32,7 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
 
   return (
     <Tag
+      data-reveal
       className={cn(className)}
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}

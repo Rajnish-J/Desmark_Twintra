@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { products } from "@/content/products";
 import { certifications } from "@/content/company";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
@@ -91,7 +92,7 @@ export function OrbitVisual({ className }: { className?: string }) {
         iconSize={OUTER_ICON}
         duration={54}
         startAngle={22}
-        pathClassName="border-white/22 lg:border-dashed"
+        pathClassName="border-panel-ink/22 lg:border-dashed"
         className="group-hover:[animation-play-state:paused]"
       >
         {orbiting.map((product) => (
@@ -100,10 +101,14 @@ export function OrbitVisual({ className }: { className?: string }) {
               className="absolute inset-0 rounded-[28%] opacity-55 blur-[calc(var(--orbit-d)*0.028)] transition-opacity duration-500 group-hover/node:opacity-90"
               style={{ backgroundImage: product.gradient }}
             />
-            <span
-              className="relative block size-full rounded-[28%] shadow-[0_12px_38px_-10px_rgba(0,0,0,0.7)] ring-1 ring-white/25 transition-transform duration-500 group-hover/node:scale-110"
-              style={{ backgroundImage: product.gradient }}
-            />
+            <span className="relative block size-full overflow-hidden rounded-[28%] shadow-[0_12px_38px_-10px_rgba(0,0,0,0.7)] ring-1 ring-panel-ink/25 transition-transform duration-500 group-hover/node:scale-110">
+              <Image src={product.image} alt="" fill sizes="96px" className="object-cover" />
+              <span
+                aria-hidden
+                className="absolute inset-0 opacity-65 mix-blend-multiply"
+                style={{ backgroundImage: product.gradient }}
+              />
+            </span>
             <span
               className="pointer-events-none absolute inset-0 rounded-[28%] opacity-70"
               style={{
@@ -132,7 +137,7 @@ export function OrbitVisual({ className }: { className?: string }) {
           <span
             key={product.slug}
             aria-hidden
-            className="whitespace-nowrap text-[clamp(9px,calc(var(--orbit-d)*0.026),13px)] font-medium tracking-[0.04em] text-white/85 [text-shadow:0_1px_6px_rgba(10,4,26,0.9)]"
+            className="whitespace-nowrap text-[clamp(9px,calc(var(--orbit-d)*0.026),13px)] font-medium tracking-[0.04em] text-panel-ink/85 [text-shadow:0_1px_6px_rgba(250,246,238,0.9)] dark:[text-shadow:0_1px_6px_rgba(10,4,26,0.9)]"
           >
             {product.name}
           </span>
@@ -146,7 +151,7 @@ export function OrbitVisual({ className }: { className?: string }) {
         duration={38}
         startAngle={68}
         reverse
-        pathClassName="border-white/14"
+        pathClassName="border-panel-ink/14"
         className="group-hover:[animation-play-state:paused]"
       >
         {certifications.map((cert) => (
@@ -172,16 +177,24 @@ export function OrbitVisual({ className }: { className?: string }) {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-0 m-auto size-[42%] rounded-full blur-2xl"
+          className="pointer-events-none absolute inset-0 m-auto size-[42%] rounded-full blur-2xl dark:hidden"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(250,246,238,0.95) 0%, rgba(250,246,238,0.5) 55%, transparent 72%)",
+          }}
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 m-auto hidden size-[42%] rounded-full blur-2xl dark:block"
           style={{
             background:
               "radial-gradient(circle at 50% 50%, rgba(18,10,38,0.9) 0%, rgba(18,10,38,0.45) 55%, transparent 72%)",
           }}
         />
-        <span className="relative font-display text-[clamp(1.75rem,calc(var(--orbit-d)*0.15),4.2rem)] leading-none tracking-[-0.02em] text-white">
-          3<span className="text-violet-300">+</span>
+        <span className="relative font-display text-[clamp(1.75rem,calc(var(--orbit-d)*0.15),4.2rem)] leading-none tracking-[-0.02em] text-panel-ink">
+          3<span className="text-panel-accent">+</span>
         </span>
-        <span className="relative mt-[calc(var(--orbit-d)*0.016)] text-[clamp(8px,calc(var(--orbit-d)*0.024),12px)] font-medium uppercase tracking-[0.24em] text-white/65">
+        <span className="relative mt-[calc(var(--orbit-d)*0.016)] text-[clamp(8px,calc(var(--orbit-d)*0.024),12px)] font-medium uppercase tracking-[0.24em] text-panel-ink/65">
           Registrations
         </span>
       </div>

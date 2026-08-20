@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { products, productsIntro, tradeTerms } from "@/content/products";
 import { Section } from "@/components/ui/section";
@@ -15,7 +16,7 @@ export function ProductCard({
 }) {
   return (
     <Reveal as="article" delay={index} className="h-full">
-      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_24px_50px_-24px_rgba(27,58,45,0.35)]">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_24px_50px_-24px_rgba(30,17,64,0.35)]">
         {/* Spice-gradient artwork, carried over from the original profile */}
         <Link
           href={`/products/${product.slug}`}
@@ -25,8 +26,20 @@ export function ProductCard({
           <span
             aria-hidden
             className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-            style={{ backgroundImage: product.gradient }}
-          />
+          >
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+            <span
+              aria-hidden
+              className="absolute inset-0 opacity-50 mix-blend-multiply"
+              style={{ backgroundImage: product.gradient }}
+            />
+          </span>
           <span
             aria-hidden
             className="bg-grain absolute inset-0 opacity-[0.18] mix-blend-overlay"

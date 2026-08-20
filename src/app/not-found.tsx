@@ -12,13 +12,13 @@ export default function NotFound() {
       />
 
       <Container className="relative py-24 text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-violet-200/80">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-panel-ink/70">
           404 — Not Found
         </p>
-        <h1 className="mx-auto mt-5 max-w-xl font-display text-[2.4rem] leading-[1.1] tracking-[-0.02em] text-white sm:text-[3.2rem]">
+        <h1 className="mx-auto mt-5 max-w-xl font-display text-[2.4rem] leading-[1.1] tracking-[-0.02em] text-panel-ink sm:text-[3.2rem]">
           This page isn&apos;t part of our catalogue.
         </h1>
-        <p className="mx-auto mt-5 max-w-md text-[15.5px] leading-[1.7] text-white/60">
+        <p className="mx-auto mt-5 max-w-md text-[15.5px] leading-[1.7] text-panel-ink/60">
           The link may be out of date. Head back to the products we trade, or get in
           touch and we&apos;ll point you the right way.
         </p>

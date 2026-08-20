@@ -166,8 +166,11 @@ export function EnquiryForm({
             autoComplete="tel"
             placeholder="+91 ..."
             className={fieldBase}
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? `${uid}-phone-err` : undefined}
             {...register("phone")}
           />
+          <FieldError id={`${uid}-phone-err`} message={errors.phone?.message} />
         </div>
       </div>
 
@@ -222,11 +225,15 @@ export function EnquiryForm({
                 inputMode="numeric"
                 placeholder="e.g. 500"
                 className={cn(fieldBase, "flex-1")}
+                aria-invalid={!!errors.quantity}
+                aria-describedby={errors.quantity ? `${uid}-quantity-err` : undefined}
                 {...register("quantity")}
               />
               <select
                 aria-label="Quantity unit"
                 className={cn(fieldBase, "w-32 shrink-0 appearance-none bg-card")}
+                aria-invalid={!!errors.unit}
+                aria-describedby={errors.unit ? `${uid}-unit-err` : undefined}
                 {...register("unit")}
               >
                 <option value="">Unit</option>
@@ -237,6 +244,8 @@ export function EnquiryForm({
                 ))}
               </select>
             </div>
+            <FieldError id={`${uid}-quantity-err`} message={errors.quantity?.message} />
+            <FieldError id={`${uid}-unit-err`} message={errors.unit?.message} />
           </div>
         </div>
       )}

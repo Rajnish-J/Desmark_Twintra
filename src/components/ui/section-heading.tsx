@@ -36,17 +36,9 @@ export function SectionHeading({
       <div className={cn("flex items-center gap-3", centered && "justify-center")}>
         <span
           aria-hidden
-          className={cn(
-            "h-px w-8",
-            onDark ? "bg-chilli-warm/70" : "bg-accent/60",
-          )}
+          className={cn("h-px w-8", onDark ? "bg-accent/70" : "bg-accent/60")}
         />
-        <span
-          className={cn(
-            "text-[11px] font-semibold uppercase tracking-[0.22em]",
-            onDark ? "text-chilli-warm" : "text-accent",
-          )}
-        >
+        <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
           {label}
         </span>
       </div>
@@ -54,7 +46,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "mt-5 max-w-3xl font-display text-[2rem] leading-[1.12] tracking-[-0.015em] text-balance-tight sm:text-[2.6rem] lg:text-[3.1rem]",
-          onDark ? "text-cream" : "text-heading",
+          onDark ? "text-panel-ink" : "text-heading",
         )}
       >
         {/* Titles carry deliberate line breaks in the content layer */}
@@ -69,7 +61,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-5 max-w-2xl text-[15px] leading-relaxed sm:text-base",
-            onDark ? "text-cream/65" : "text-ink-mid",
+            onDark ? "text-panel-ink/65" : "text-ink-mid",
           )}
         >
           {lead}

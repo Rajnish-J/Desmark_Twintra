@@ -31,7 +31,7 @@ export function WhyUs() {
 
           return (
             <Reveal as="li" key={reason.title} delay={i % 3}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card p-7 transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-outline/20 hover:shadow-[0_24px_48px_-26px_rgba(27,58,45,0.35)]">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card p-7 transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-outline/20 hover:shadow-[0_24px_48px_-26px_rgba(30,17,64,0.35)]">
                 {/* Accent rule grows across the card top on hover */}
                 <span
                   aria-hidden

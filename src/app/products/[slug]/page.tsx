@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { getProduct, products, tradeTerms } from "@/content/products";
@@ -44,7 +45,7 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
   return (
     <>
       {/* ─── Product hero ─── */}
-      <section className="on-dark relative isolate overflow-hidden bg-forest pt-28 sm:pt-32">
+      <section className="on-dark relative isolate overflow-hidden bg-panel pt-28 sm:pt-32">
         <span
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 opacity-70"
@@ -57,7 +58,7 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
         <Container className="pb-16 sm:pb-20">
           <Link
             href="/#products"
-            className="inline-flex items-center gap-2 text-[13px] text-cream/55 transition-colors hover:text-cream"
+            className="inline-flex items-center gap-2 text-[13px] text-panel-ink/55 transition-colors hover:text-panel-ink"
           >
             <ArrowLeft className="size-4" aria-hidden />
             All products
@@ -65,13 +66,13 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-chilli-warm">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
                 {product.category}
               </p>
-              <h1 className="mt-4 font-display text-[2.4rem] leading-[1.08] tracking-[-0.02em] text-cream text-balance-tight sm:text-[3.2rem]">
+              <h1 className="mt-4 font-display text-[2.4rem] leading-[1.08] tracking-[-0.02em] text-panel-ink text-balance-tight sm:text-[3.2rem]">
                 {product.name}
               </h1>
-              <p className="mt-5 max-w-lg text-[15.5px] leading-[1.75] text-cream/60">
+              <p className="mt-5 max-w-lg text-[15.5px] leading-[1.75] text-panel-ink/60">
                 {product.summary}
               </p>
 
@@ -88,11 +89,18 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
               </div>
             </div>
 
-            {/* Gradient artwork */}
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-white/12">
+            {/* Photo, tinted with the product's gradient */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-panel-ink/12">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
               <span
                 aria-hidden
-                className="absolute inset-0"
+                className="absolute inset-0 opacity-50 mix-blend-multiply"
                 style={{ backgroundImage: product.gradient }}
               />
               <span
@@ -180,7 +188,7 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
 
         {/* ─── Quote CTA ─── */}
         <Reveal delay={1}>
-          <div className="relative mt-16 isolate overflow-hidden rounded-2xl bg-forest px-8 py-12 sm:px-12 sm:py-14">
+          <div className="on-dark relative mt-16 isolate overflow-hidden rounded-2xl bg-panel px-8 py-12 sm:px-12 sm:py-14">
             <span
               aria-hidden
               className="pointer-events-none absolute inset-0 -z-10 opacity-80"
@@ -191,10 +199,10 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
             />
             <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-xl">
-                <h2 className="font-display text-[1.8rem] leading-tight text-cream sm:text-[2.15rem]">
+                <h2 className="font-display text-[1.8rem] leading-tight text-panel-ink sm:text-[2.15rem]">
                   Ready to discuss {product.name.toLowerCase()}?
                 </h2>
-                <p className="mt-3 text-[15px] leading-[1.7] text-cream/60">
+                <p className="mt-3 text-[15px] leading-[1.7] text-panel-ink/60">
                   Send us your grade, packing and delivery requirements. We&apos;ll come
                   back with options and indicative terms — no obligation.
                 </p>
@@ -232,13 +240,22 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
             <Reveal as="li" key={item.slug} delay={i}>
               <Link
                 href={`/products/${item.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_24px_48px_-26px_rgba(27,58,45,0.35)]"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cream-line bg-card transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-accent/25 hover:shadow-[0_24px_48px_-26px_rgba(30,17,64,0.35)]"
               >
-                <span
-                  aria-hidden
-                  className="block aspect-[16/9] w-full"
-                  style={{ backgroundImage: item.gradient }}
-                />
+                <span aria-hidden className="relative block aspect-[16/9] w-full">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    sizes="(min-width: 640px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 opacity-50 mix-blend-multiply"
+                    style={{ backgroundImage: item.gradient }}
+                  />
+                </span>
                 <span className="flex flex-1 flex-col p-5">
                   <span className="font-display text-[1.15rem] text-heading">
                     {item.name}
